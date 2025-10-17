@@ -778,6 +778,8 @@ bool init_root_port(pcie_ide_test_group_context_t *group_context)
     }
   }
   populate_rid_assoc_reg_block(&port_context->rid_assoc_reg_block, segment, lower_port_context->port->bus, lower_port_context->port->device, lower_port_context->port->function);
+  // WA: some device linksts2 reg not implemented correctly, using segment number from root_port for rid reg in device.
+  lower_port_context->rid_assoc_reg_block.rid_assoc2.segment_base = segment;
 
   ide_common_test_switch_internal_conn_context_t *itr = NULL;
   char* dev_bdf = NULL;
