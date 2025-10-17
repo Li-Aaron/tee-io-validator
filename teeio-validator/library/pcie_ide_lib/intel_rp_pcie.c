@@ -292,8 +292,8 @@ bool parse_keyp_table(ide_common_test_port_context_t *port_context, INTEL_KEYP_P
     for (i = 0; i < kcu->RootPortCount; i++)
     {
       krpi = (INTEL_KEYP_ROOT_PORT_INFORMATION *)(buffer + offset + sizeof(INTEL_KEYP_KEY_CONFIGURATION_UNIT) + i * sizeof(INTEL_KEYP_ROOT_PORT_INFORMATION));
-        TEEIO_DEBUG((TEEIO_DEBUG_INFO, "krpi[%d]: bus %d, device %d, function %d\n", i, krpi->Bus, krpi->Bits.Device, krpi->Bits.Function));
-        TEEIO_DEBUG((TEEIO_DEBUG_INFO, "port_context: bus %d, device %d, function %d\n", port_context->port->bus, port_context->port->device, port_context->port->function));
+        TEEIO_DEBUG((TEEIO_DEBUG_INFO, "krpi[%d]: segment %x, bus %x, device %x, function %x\n", i, krpi->SegmentNumber, krpi->Bus, krpi->Bits.Device, krpi->Bits.Function));
+        TEEIO_DEBUG((TEEIO_DEBUG_INFO, "port_context: segment %x, bus %x, device %x, function %x\n", port_context->port->segment, port_context->port->bus, port_context->port->device, port_context->port->function));
       if (krpi->Bus == port_context->port->bus && krpi->Bits.Device == port_context->port->device && krpi->Bits.Function == port_context->port->function)
       {
         found = true;
